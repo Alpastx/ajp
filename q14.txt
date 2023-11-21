@@ -1,0 +1,63 @@
+1. index.html
+
+```html
+<html>
+
+<head>
+
+<body>
+    <form method=get action="http://localhost:8080/atharv/servlet/password ">
+        Name:<input type="text" name="t1"><br>
+        password:<input type="password" name="t2"><br>
+        <input type="submit">
+    </form>
+</body>
+
+</html>
+```
+
+1. demo.java
+
+```java
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class demo extends HttpServlet {
+
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
+    throws IOException, ServletException {
+    response.setContentType("text/html");
+    PrintWriter out = response.getWriter();
+    out.println("<html>");
+    out.println("<head>");
+    out.println("<title>Hello World!</title>");
+    out.println("</head>");
+    out.println("<body>");
+    String a = request.getParameter("t1");
+    String b = request.getParameter("t2");
+    if (b.length() <= 6) {
+      out.println("<h3> Welcome  To  Home Page<h3>");
+    } else {
+      out.println("<h3>Password Should not more than 6 Character<h3>");
+    }
+    out.println("</body>");
+    out.println("</html>");
+  }
+}
+```
+
+1. web.xml
+
+```xml
+<web-app>
+<servlet>
+  <servlet-name>password</servlet-name> 
+  <servlet-class>password</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>password</servlet-name> 
+  <url-pattern>/servlet/password</url-pattern> 
+</servlet-mapping>
+</web-app>
+```
